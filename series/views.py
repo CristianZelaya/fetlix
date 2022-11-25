@@ -13,11 +13,14 @@ class SerieView( View ):
 
     def get( self, request ):
 
-        # Si el usuarioe sta utenticado puede ver la vista
+        # Si el usuario esta utenticado puede ver la vista
         if request.user.is_authenticated:
 
+            username = request.user.username
+
             context = {
-                'series': list( Serie.objects.all() )
+                'series': list( Serie.objects.all() ),
+                'username': username
             }
             return render( request, 'series.html', context = context )
         

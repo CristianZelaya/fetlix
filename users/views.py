@@ -1,6 +1,6 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from django.views.generic.base import View
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 class LoginView( View ):
@@ -19,5 +19,13 @@ class LoginView( View ):
         if user is not None:
             #funcion para el logeo de usuarios
             login(request, user)
-            return HttpResponse( content=b'Success')
+            return redirect('series')
         return self.get( request )
+
+#Controlador de la vista para cerrar sesion
+class LogoutView( View ):
+    def get( self, request ):
+        #Preuntamos ue si el usuario esta logueado, si esta cierra sesion y lo redirige al login
+        if request.user.is_authenticated:
+            logout( request )
+        return redirect('login')

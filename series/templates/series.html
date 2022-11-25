@@ -10,7 +10,7 @@
     </head>
     <body>
 
-        <h1> Series </h1>
+        <h1>Bienvenido a tus series {{username}}</h1>
 
         {% for serie in series %}
 
@@ -21,8 +21,11 @@
 
             </div>
 
-
        {% endfor %}
+
+        <div>
+            <span><a href="{% url 'logout' %}">Logout</a></span>
+        </div>
 
     </body>
 </html>
