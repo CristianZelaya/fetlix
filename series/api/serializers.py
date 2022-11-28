@@ -9,8 +9,9 @@ from ..models import Serie
 
 #Utilizando ModelSerializer
 class SerieSerializer( serializers.ModelSerializer ):
-    id = serializers.IntegerField(read_only=True)
+    #id = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Serie
-        fields = '__all__'
+        fields = ('id','title', 'description')
+        read_only_fields = ('id', )
